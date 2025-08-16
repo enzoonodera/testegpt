@@ -1,0 +1,21 @@
+{
+    "name": "daanrox/raspadinha",
+    "description": "Desenvolvido por Daanrox +5531992812273",
+    "autoload": {
+        "psr-4": {
+            "Daanrox\\Raspadinha\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daanrox",
+            "email": "daanielrox@hotmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^3.9",
+        "symfony/var-dumper": "^7.3",
+        "doctrine/orm": "^3.5",
+        "guzzlehttp/guzzle": "^7.9"
+    }
+}
