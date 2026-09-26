@@ -69,9 +69,18 @@ def test_apenas_video_promotion_e_legacy_migration_criam_video_no_projeto():
     """Confirmação viva (não só documentada em prosa) do achado da seção
     0.1 -- nenhum outro módulo de ``_sistema/`` cria ``Video(``, exceto
     ``domain/models.py`` (definição), ``video_promotion.py`` (este módulo)
-    e ``storage/legacy_migration.py`` (migração de dados antigos)."""
+    e ``storage/legacy_migration.py`` (migração de dados antigos).
+
+    PROMPT 48 acrescentou conscientemente ``smart_clip_selection_screen.py``:
+    cada corte aprovado vira um Video NOVO da mesma origem, o que o
+    contrato 1:1 de ``promote()`` não permite (e não deve permitir). O
+    contrato deste módulo continua intacto -- ver seção 5 da docstring de
+    ``smart_clip_selection_screen.py``."""
     sistema_dir = Path(video_promotion.__file__).parent
-    permitidos = {"models.py", "video_promotion.py", "legacy_migration.py", "test_video_promotion.py"}
+    permitidos = {
+        "models.py", "video_promotion.py", "legacy_migration.py", "test_video_promotion.py",
+        "smart_clip_selection_screen.py",
+    }
     for py_file in sistema_dir.rglob("*.py"):
         if py_file.name in permitidos:
             continue
