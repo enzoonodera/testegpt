@@ -1,0 +1,86 @@
+PAINEL OFICIAL - YOUTUBE + TIKTOK
+=================================
+
+ARQUIVO PARA ABRIR:
+PAINEL_OFICIAL.bat
+
+MENU:
+1 - LIMPAR META DADOS OFICIAL
+2 - GERAR / EDITAR TEXTOS DAS POSTAGENS
+3 - POSTAR / AGENDAR
+4 - ADICIONAR CONTA
+5 - REMOVER CONTA
+6 - VER CONTAS CADASTRADAS
+7 - INSTALAR / VERIFICAR DEPENDÊNCIAS
+0 - SAIR
+
+PRIMEIRO USO
+------------
+1. Abra PAINEL_OFICIAL.bat.
+2. Rode a opção 7 e instale/verifique as dependências.
+3. Use a opção 4 para adicionar uma conta YouTube ou TikTok.
+4. Escolha o país/idioma principal da conta e faça o login no Chrome que abrir.
+5. Se já existe um sistema antigo dessa conta, a opção 4 permite importar a pasta antiga
+   para preservar login, vídeos e histórico de postagem.
+
+RETOMADA AUTOMÁTICA
+-------------------
+Cada conta possui seus próprios vídeos, perfil do navegador, textos, logs e históricos.
+
+- LIMPAR META DADOS OFICIAL:
+  identifica o original pelo conteúdo, não refaz o que já concluiu e nunca reutiliza
+  um número já usado por aquela conta. A numeração considera vídeos existentes,
+  números reservados e o histórico de postagem.
+
+- TEXTOS DAS POSTAGENS:
+  salva cada vídeo assim que título/descrição/hashtags (YouTube) ou caption/hashtags
+  (TikTok) termina. Se interromper, a próxima execução gera somente o que falta.
+
+- POSTAR / AGENDAR:
+  usa o estado separado da conta. Se 001 a 007 estão confirmados e 008 falhou antes
+  de ser confirmado, a próxima execução começa novamente no 008.
+
+SEM SUBTÍTULOS
+--------------
+Este pacote NÃO cria SRT, NÃO queima texto dentro do vídeo e NÃO cria versões legendadas.
+O Whisper é usado apenas internamente para entender a fala e gerar o texto da postagem.
+
+PASTAS
+------
+O código do programa fica separado dos dados mutáveis. No Windows, por padrão:
+
+%LOCALAPPDATA%\PainelOficial\
+    database\
+    accounts\
+    projects\
+    cache\
+    logs\
+    temp\
+    templates\
+    backups\
+    models\
+    support\
+
+As contas ficam em:
+%LOCALAPPDATA%\PainelOficial\accounts\youtube\NOME_DA_CONTA\
+%LOCALAPPDATA%\PainelOficial\accounts\tiktok\NOME_DA_CONTA\
+
+Dentro de cada conta continuam existindo:
+- videos\
+- dados\
+- logs\
+- perfil_youtube\ ou perfil_tiktok\
+
+MIGRACAO AUTOMATICA
+-------------------
+Se uma versão anterior tiver `contas\` ou `_removidas\` ao lado do programa, o painel
+migra esse conteúdo para o storage local novo. Cada conta/backup é tratada como uma unidade:
+nunca são mesclados perfil, vídeos ou configuração de duas árvores diferentes. Se já existir
+um destino divergente, origem e destino permanecem intactos para revisão.
+O status da migração fica em `support\storage_migration_v1.json`.
+
+IMPORTANTE
+----------
+Não apague manualmente os arquivos JSON da pasta dados se quiser manter a retomada.
+Os arquivos de estado são gravados de forma persistente durante o processo.
+Atualizar/substituir os arquivos instalados do programa não deve exigir apagar a pasta de dados em LocalAppData.
